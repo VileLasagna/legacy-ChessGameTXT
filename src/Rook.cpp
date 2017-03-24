@@ -11,19 +11,19 @@
 
 Rook::Rook (Pos p)
 {
-	piece_ID = pieceID::pieceID(true);
+	piece_ID = pieceID(true);
 	at = p;
 	pointvalue = 5;
 }
 
 Rook::Rook(Pos p, bool c)
 {
-	piece_ID = pieceID::pieceID(c, pieceID::Rook);
+	piece_ID = pieceID(c, pieceID::Rook);
 	at = p;
 	pointvalue = 5;
 }
 
-const bool Rook::canGo(Pos& to, BD& vec)
+bool Rook::canGo(Pos& to, BD& vec) const
 {
 	int difX = to.getX() - at.getX();
 	int difY = to.getY() - at.getY();
@@ -89,21 +89,19 @@ const bool Rook::canGo(Pos& to, BD& vec)
 	return true;
 }
 
-const bool Rook::canMove (Pos& to, BD& vec)
+bool Rook::canMove (Pos& to, BD& vec) const
 {
 	if(canGo(to, vec))
 	{
+		Rook clone(*this);
 		BD testBoard = Square::BDClone(vec);
-		Pos op = at;
-		setPos(to,testBoard);
+		clone.setPos(to,testBoard);
 		if(!getCheck(testBoard))
 		{
-			at = op;
 			return true;
 		}
 		else
 		{
-			at = op;
 			return false;
 		}
 	}
@@ -113,7 +111,7 @@ const bool Rook::canMove (Pos& to, BD& vec)
 	}
 }
 
-const std::vector<Pos> Rook::getMoves(BD& vec)
+std::vector<Pos> Rook::getMoves(BD& vec) const
 {
 	std::vector<Pos> moves;
 	int x;
