@@ -9,19 +9,19 @@
 
 Bishop::Bishop(Pos p)
 {
-	piece_ID = pieceID::pieceID(true);
+	piece_ID = pieceID(true);
 	at = p;
 	pointvalue = 3;
 }
 
 Bishop::Bishop(Pos p, bool c)
 {
-	piece_ID = pieceID::pieceID(c, pieceID::Bishop);
+	piece_ID = pieceID(c, pieceID::Bishop);
 	at = p;
 	pointvalue = 3;
 }
 
-const bool Bishop::canGo(Pos&to, BD& vec)
+bool Bishop::canGo(Pos&to, BD& vec) const
 {
 	int difX = to.getX() - at.getX();
 	int difY = to.getY() - at.getY();
@@ -90,22 +90,19 @@ const bool Bishop::canGo(Pos&to, BD& vec)
 	return true;
 }
 
-const bool Bishop::canMove(Pos& to, BD& vec)
+bool Bishop::canMove(Pos& to, BD& vec) const
 {
-	
+	Bishop clone(*this);
 	if(canGo(to, vec))
 	{
 		BD testBoard = Square::BDClone(vec);
-		Pos op = at;
-		setPos(to,testBoard);
+		clone.setPos(to,testBoard);
 		if(!getCheck(testBoard))
 		{
-			at = op;
 			return true;
 		}
 		else
 		{
-			at = op;
 			return false;
 		}
 	}
@@ -115,7 +112,7 @@ const bool Bishop::canMove(Pos& to, BD& vec)
 	}
 }
 
-const std::vector<Pos> Bishop::getMoves(BD& vec)
+std::vector<Pos> Bishop::getMoves(BD& vec) const
 {
 	std::vector<Pos> moves;
 	Pos p = at;
