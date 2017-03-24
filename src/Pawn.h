@@ -25,12 +25,12 @@ class Pawn: public piece
 public:
 
 	void promote(BD& vec);
-	const bool canGo(Pos& to, BD& vec);
-	const bool canMove(Pos& to, BD& vec);
-	const std::vector<Pos> getMoves(BD& vec);
+	bool canGo(Pos& to, BD& vec) const override;
+	bool canMove(Pos& to, BD& vec) const override;
+	std::vector<Pos> getMoves(BD& vec) const override;
 	Pawn(Pos p);
 	Pawn(Pos p, bool c);
-	bool move(Pos to, BD& vec);
+	bool move(Pos to, BD& vec) override;
 
 };
 

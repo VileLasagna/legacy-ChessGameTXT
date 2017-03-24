@@ -69,19 +69,19 @@ void Pawn::promote(BD& vec)
 
 Pawn::Pawn (Pos p)
 {
-	piece_ID = pieceID::pieceID(true);
+	piece_ID = pieceID(true);
 	at = p;
 	pointvalue = 1;
 }
 
 Pawn::Pawn(Pos p, bool c)
 {
-	piece_ID = pieceID::pieceID(c, pieceID::Pawn);
+	piece_ID = pieceID(c, pieceID::Pawn);
 	at = p;
 	pointvalue = 1;
 }
 
-const bool Pawn::canGo(Pos& to, BD& vec)
+bool Pawn::canGo(Pos& to, BD& vec) const
 {
 	int difX = to.getX() - at.getX();
 	int difY = to.getY() - at.getY();
@@ -170,26 +170,24 @@ const bool Pawn::canGo(Pos& to, BD& vec)
 	return false;
 }
 
-const bool Pawn::canMove(Pos& to, BD& vec)
+bool Pawn::canMove(Pos& to, BD& vec) const
 {
 
 	if(canGo(to, vec))
 	{
+		Pawn clone(*this);
 		BD testBoard = Square::BDClone(vec);
-		Pos op = at;
-		setPos(to,testBoard);
+		clone.setPos(to,testBoard);
 		if(!getCheck(testBoard))
 		{
-			at = op;
 			return true;
 		}
-		at = op;
 	}
 
 	return false;
 }
 
-const std::vector<Pos> Pawn::getMoves(BD& vec)
+std::vector<Pos> Pawn::getMoves(BD& vec) const
 {
 	std::vector<Pos> moves;
 	int x = at.getX();
