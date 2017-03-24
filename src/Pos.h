@@ -25,11 +25,11 @@ class Pos
 	 * this should avoid some silly mistakes.
 	 */
 public:
-	const int getX();
-	const int getY();
+	unsigned short getX() const ;
+	unsigned short getY() const ;
 	bool endboard();
 	Pos operator++(int);
-	Pos (int h = 0, int v = 0);
+	Pos (unsigned short h = 0, unsigned short v = 0);
 	bool UpRight();
 	bool DownRight();
 	bool DownLeft();
@@ -38,8 +38,8 @@ public:
 	bool operator != (Pos comp);
 
 private:
-	int x;
-	int y;
+	unsigned short x;
+	unsigned short y;
 };
 
 #endif /* POS_H_ */

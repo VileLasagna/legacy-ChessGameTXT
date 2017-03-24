@@ -7,19 +7,18 @@
 
 #include "Pos.h"
 
-Pos::Pos (int h, int v)
+Pos::Pos (unsigned short h, unsigned short v)
 {
 	x = h;
 	y = v;
 
 }
 
-const int Pos::getX()
+unsigned short Pos::getX() const
 {
 	return x;
 }
-
-const int Pos::getY()
+unsigned short Pos::getY() const
 {
 	return y;
 }
