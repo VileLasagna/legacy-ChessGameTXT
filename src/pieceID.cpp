@@ -10,17 +10,17 @@
 	int pieceID::S_ID = 1;
 	int pieceID::S_AUTO = 1;
 
-bool pieceID::getColour()
+bool pieceID::getColour() const
 {
 	return colour;
 }
 
-pieceID::Type pieceID::getType()
+pieceID::Type pieceID::getType() const
 {
 	return type;
 }
 
-int pieceID::getID()
+int pieceID::getID() const
 {
 	return ID;
 }

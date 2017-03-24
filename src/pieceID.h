@@ -15,9 +15,9 @@ class pieceID
 public:
 
 	enum Type {Pawn, Rook, Knight, Bishop, Queen, King, UNDEFINED};
-	bool getColour();
-	Type getType();
-	int getID();
+	bool getColour() const;
+	Type getType() const;
+	int getID() const;
 	pieceID(bool AUTO = false);//constructor that is used by board::newGame()
 	pieceID(bool c, Type t);
 
