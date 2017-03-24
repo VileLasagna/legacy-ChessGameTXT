@@ -23,12 +23,12 @@ Board::Board()//new game
 	}
 	for (int i = 1; i <= 8; i++)
 	{
-		field[i].push_back(Square::Square(Pos::Pos(0,i)));
+		field[i].push_back(Square(Pos(0,i)));
 	}
 	while(true)
 	{
 
-		field[bdpos.getX()].push_back(Square::Square());
+		field[bdpos.getX()].push_back(Square());
 		if(bdpos.endboard())
 		{
 			break;
