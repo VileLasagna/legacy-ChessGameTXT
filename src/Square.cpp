@@ -8,12 +8,12 @@
 #include "Square.h"
 
 
-const bool Square::getColour()
+bool Square::getColour() const
 {
 	return Colour;
 }
 
-const void* Square::getPiece()
+const void* Square::getPiece() const
 {
 	return current_Piece;
 }
