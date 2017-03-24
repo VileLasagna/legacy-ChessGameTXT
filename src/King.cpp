@@ -10,12 +10,12 @@
 
 King::King(Pos p)
 {
-	piece_ID = pieceID::pieceID(true);
+	piece_ID = pieceID(true);
 	pointvalue = 0;
 	at = p;
 }
 
-const bool King::canGo(Pos& to, BD& vec)
+bool King::canGo(Pos& to, BD& vec) const
 {
 	int difX = to.getX() - at.getX();
 	int difY = to.getY() - at.getY();
@@ -37,21 +37,19 @@ const bool King::canGo(Pos& to, BD& vec)
 	}
 	return true;
 }
-const bool King::canMove(Pos& to, BD& vec)
+bool King::canMove(Pos& to, BD& vec) const
 {
+	King clone(*this);
 	if(canGo(to, vec))
 	{
 		BD testBoard = Square::BDClone(vec);
-		Pos op = at;
-		setPos(to,testBoard);
+		clone.setPos(to,testBoard);
 		if(!getCheck(testBoard))
 		{
-			at = op;
 			return true;
 		}
 		else
 		{
-			at = op;
 			return false;
 		}
 	}
@@ -61,7 +59,7 @@ const bool King::canMove(Pos& to, BD& vec)
 	}
 }
 
-const std::vector<Pos> King::getMoves(BD& vec)
+std::vector<Pos> King::getMoves(BD& vec) const
 {
 	std::vector<Pos> moves;
 	int x = at.getX();
