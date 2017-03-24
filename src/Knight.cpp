@@ -10,18 +10,18 @@
 
 Knight::Knight(Pos p)
 {
-	piece_ID = pieceID::pieceID(true);
+	piece_ID = pieceID(true);
 	pointvalue = 3;
 	at = p;
 }
 Knight::Knight(Pos p, bool c)
 {
-	piece_ID = pieceID::pieceID(c, pieceID::Knight);
+	piece_ID = pieceID(c, pieceID::Knight);
 	at = p;
 	pointvalue = 3;
 }
 
-const bool Knight::canGo(Pos& to, BD& vec)
+bool Knight::canGo(Pos& to, BD& vec) const
 {
 	int difX = to.getX() - at.getX();
 	int difY = to.getY() - at.getY();
@@ -59,21 +59,20 @@ const bool Knight::canGo(Pos& to, BD& vec)
 	return true;
 }
 
-const bool Knight::canMove(Pos& to, BD& vec)
+bool Knight::canMove(Pos& to, BD& vec) const
 {
+
 	if (canGo(to, vec))
 	{
+		Knight clone (*this);
 		BD testBoard = Square::BDClone(vec);
-		Pos op = at;
-		setPos(to,testBoard);
+		clone.setPos(to,testBoard);
 		if(!getCheck(testBoard))
 		{
-			at = op;
 			return true;
 		}
 		else
 		{
-			at = op;
 			return false;
 		}
 	}
@@ -83,7 +82,7 @@ const bool Knight::canMove(Pos& to, BD& vec)
 	}
 }
 
-const std::vector<Pos> Knight::getMoves(BD& vec)
+std::vector<Pos> Knight::getMoves(BD& vec) const
 {
 	std::vector<Pos> moves;
 	int x = at.getX();
