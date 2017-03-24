@@ -5,7 +5,7 @@
  *      Author: Vile Lasagna
  */
 
-#include <String>
+#include <string>
 
 
 #ifndef FATALERROREXCEPTION_H_

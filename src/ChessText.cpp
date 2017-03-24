@@ -7,7 +7,8 @@
 
 #include "GameState.h"
 #include <iostream>
-#include <String>
+#include <string>
+#include <cstdlib>
 
 char getSquareChar(Square s)
 {
@@ -205,7 +206,7 @@ bool welcome()
     while (true)
 	{
 	/*
-	 * Choose an option player, but don't just go entering anything you fancy ¬¬;
+	 * Choose an option player, but don't just go entering anything you fancy Â¬Â¬;
      */
 
 		std::cin >> i;

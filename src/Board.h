@@ -6,8 +6,8 @@
  */
 
 #include "Square.h"
-#include <String>
-#include <Vector>
+#include <string>
+#include <vector>
 #include <iostream>
 #include "Pos.h"
 #include "piece.h"

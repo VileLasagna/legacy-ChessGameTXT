@@ -7,7 +7,7 @@
 
 #include "piece.h"
 #include <iostream>
-#include <String>
+#include <string>
 #include "Queen.h"
 #include "Bishop.h"
 #include "Knight.h"
