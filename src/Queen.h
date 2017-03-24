@@ -18,18 +18,18 @@ class Queen: public piece
 {
 public:
 
-	const bool canGo(Pos& to, BD& vec);
-	const bool canMove(Pos& to, BD& vec);
-	const std::vector<Pos> getMoves(BD& vec);
+	bool canGo(Pos& to, BD& vec) const override;
+	bool canMove(Pos& to, BD& vec) const override;
+	std::vector<Pos> getMoves(BD& vec) const override;
 	Queen(Pos p);
 	Queen(Pos p, bool c);
 
 private:
 
-	const bool BishopMove (Pos& to, BD& vec);
-	const bool RookMove (Pos& to, BD& vec);
-	const std::vector<Pos> getBishop(BD& vec);
-	const std::vector<Pos> getRook(BD& vec);
+	bool BishopMove (Pos& to, BD& vec) const;
+	bool RookMove (Pos& to, BD& vec) const;
+	std::vector<Pos> getBishop(BD& vec) const;
+	std::vector<Pos> getRook(BD& vec) const;
 
 };
 

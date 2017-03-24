@@ -9,20 +9,20 @@
 
 Queen::Queen(Pos p)
 {
-	piece_ID = pieceID::pieceID(true);
+	piece_ID = pieceID(true);
 	at = p;
 	pointvalue = 9;
 }
 
 Queen::Queen(Pos p, bool c)
 {
-	piece_ID = pieceID::pieceID(c, pieceID::Queen);
+	piece_ID = pieceID(c, pieceID::Queen);
 	at = p;
 	pointvalue = 9;
 }
 
 
-const bool Queen::BishopMove(Pos& to, BD& vec)
+bool Queen::BishopMove(Pos& to, BD& vec) const
 {
 	int difX = to.getX() - at.getX();
 	int difY = to.getY() - at.getY();
@@ -91,7 +91,7 @@ const bool Queen::BishopMove(Pos& to, BD& vec)
 	return true;
 }
 
-const bool Queen::RookMove (Pos& to, BD& vec)
+bool Queen::RookMove (Pos& to, BD& vec) const
 {
 	int difX = to.getX() - at.getX();
 	int difY = to.getY() - at.getY();
@@ -158,7 +158,7 @@ const bool Queen::RookMove (Pos& to, BD& vec)
 }
 
 
-const bool Queen::canGo (Pos& to, BD& vec)
+bool Queen::canGo (Pos& to, BD& vec) const
 {
 	if (BishopMove(to, vec)||RookMove(to,vec))
 	{
@@ -167,21 +167,19 @@ const bool Queen::canGo (Pos& to, BD& vec)
 	return false;
 }
 
-const bool Queen::canMove(Pos& to, BD& vec)
+bool Queen::canMove(Pos& to, BD& vec) const
 {
 	if (canGo(to, vec))
 	{
+		Queen clone (*this);
 		BD testBoard = Square::BDClone(vec);
-		Pos op = at;
-		setPos(to,testBoard);
+		clone.setPos(to,testBoard);
 		if(!getCheck(testBoard))
 		{
-			at = op;
 			return true;
 		}
 		else
 		{
-			at = op;
 			return false;
 		}
 	}
@@ -191,7 +189,7 @@ const bool Queen::canMove(Pos& to, BD& vec)
 	}
 }
 
-const std::vector<Pos> Queen::getRook(BD& vec)
+std::vector<Pos> Queen::getRook(BD& vec) const
 {
 	std::vector<Pos> moves;
 	int x;
@@ -258,7 +256,7 @@ const std::vector<Pos> Queen::getRook(BD& vec)
 	return moves;
 }
 
-const std::vector<Pos> Queen::getBishop(BD& vec)
+std::vector<Pos> Queen::getBishop(BD& vec) const
 {
 	std::vector<Pos> moves;
 	Pos p = at;
@@ -331,7 +329,7 @@ const std::vector<Pos> Queen::getBishop(BD& vec)
 }
 
 
-const std::vector<Pos> Queen::getMoves(BD& vec)
+std::vector<Pos> Queen::getMoves(BD& vec) const
 {
 	std::vector<Pos> movesB = getBishop(vec);
 	std::vector<Pos> movesR = getRook(vec);
